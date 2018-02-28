@@ -39,12 +39,24 @@
 				<td>${p.getDescricao()}</td>
 				<td>${p.getDataInicioVenda().getTime()}</td>
 
+				<!-- FORMA UTILIZANDO A TAGLIB IF
 				<c:if test="${p.usado}">
 					<td> SIM </td>
 				</c:if>
 				<c:if test="${not p.usado}">
 					<td> NÃO </td>
-				</c:if>
+				</c:if>-->
+
+				<!-- FORMA UTILIZANDO A TAGLIB 'choose' 'when' e 'otherwise' -->
+				<c:choose>
+					<c:when test="${p.usado}">
+						<td>SIM</td>
+					</c:when>
+					<c:otherwise>
+						<td>NÃO</td>
+					</c:otherwise>
+				</c:choose>
+
 				<td><a href="#" onclick="return removeProduto(${p.getId()})">Remover</a></td>
 				<td>${st.count}</td>
 			</tr>
