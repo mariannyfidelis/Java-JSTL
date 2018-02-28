@@ -62,6 +62,12 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/produtos/produto/formulario">Adicionar um produto</a>
+	
+	<c:url value="/produto/formulario" var="adiciona"> </c:url>
+	<a href="${adiciona}">Adicionar um produto</a>
+	
+	<!-- EXEMPLO DE ATRIBUIÇÃO E IMPRESSÃO NA TELA COM TAGLLIB SET E OUT -->
+	<c:set var="nome" value="João da Silva" />
+	<c:out value="${nome}" />
 </body>
 </html>
