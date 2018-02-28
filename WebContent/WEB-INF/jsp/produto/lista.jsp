@@ -1,4 +1,4 @@
-<%@page import="br.com.caelum.produtos.modelo.Produto"%>
+<%@page import="produtos.modelo.Produto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -29,28 +29,26 @@
 			<td>Data de Inicio da Venda</td>
 			<td>Usado?</td>
 			<td width="20%">Remover?</td>
+			<td>No.</td>
 		</tr>
-		
-		<%
-			List<Produto> produtoList = (List<Produto>) request.getAttribute("produtoList");
-			for(Produto p : produtoList) {
-		%>
-		
-			<tr id="produto<%= p.getId() %>">
-				<td><%= p.getNome().toUpperCase() %></td>
-				<td><%= p.getPreco() %></td>
-				<td><%= p.getDescricao() %></td>
-				<td><%= p.getDataInicioVenda().getTime() %></td>
-				<% if(p.isUsado()) { %>
-				<td>Sim</td>
-				<% } else { %>
-				<td>Não</td>
-				<% } %>
-				<td><a href="#" onclick="return removeProduto(<%= p.getId() %>)">Remover</a></td>
+
+		<c:forEach var="p" items="${produtoList}" varStatus="st">
+			<tr id="produto${p.getId()}">
+				<td>${p.getNome()}</td>
+				<td>${p.getPreco()}</td>
+				<td>${p.getDescricao()}</td>
+				<td>${p.getDataInicioVenda().getTime()}</td>
+
+				<c:if test="${p.usado}">
+					<td> SIM </td>
+				</c:if>
+				<c:if test="${not p.usado}">
+					<td> NÃO </td>
+				</c:if>
+				<td><a href="#" onclick="return removeProduto(${p.getId()})">Remover</a></td>
+				<td>${st.count}</td>
 			</tr>
-		<%
-			}
-		%>
+		</c:forEach>
 	</table>
 	<a href="/produtos/produto/formulario">Adicionar um produto</a>
 </body>
