@@ -34,10 +34,16 @@
 
 		<c:forEach var="p" items="${produtoList}" varStatus="st">
 			<tr id="produto${p.getId()}">
-				<td>${p.getNome()}</td>
-				<td>${p.getPreco()}</td>
+				<td>${p.nome.toUpperCase()}</td>
+				<td>
+					<fmt:formatNumber value="${p.getPreco()}" type="currency"/>
+				</td>
 				<td>${p.getDescricao()}</td>
-				<td>${p.getDataInicioVenda().getTime()}</td>
+				<td>
+					<fmt:formatDate value="${p.getDataInicioVenda().getTime()}"	pattern="EEEE, dd 'de' MMMM 'de' yyyy" />
+				</td>
+				<!-- <td>${p.getDataInicioVenda().getTime()}</td> -->
+
 
 				<!-- FORMA UTILIZANDO A TAGLIB IF
 				<c:if test="${p.usado}">
@@ -62,10 +68,11 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-	<c:url value="/produto/formulario" var="adiciona"> </c:url>
+
+	<c:url value="/produto/formulario" var="adiciona">
+	</c:url>
 	<a href="${adiciona}">Adicionar um produto</a>
-	
+
 	<!-- EXEMPLO DE ATRIBUIÇÃO E IMPRESSÃO NA TELA COM TAGLLIB SET E OUT -->
 	<c:set var="nome" value="João da Silva" />
 	<c:out value="${nome}" />
