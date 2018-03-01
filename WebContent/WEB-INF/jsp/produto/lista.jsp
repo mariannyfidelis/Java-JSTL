@@ -21,6 +21,10 @@
 
 	<h1>Produtos</h1>
 	<div id="mensagem"></div>
+	
+	<fmt:message key="mensagem.bemvindo" />
+	
+	
 	<table width="100%">
 		<tr>
 			<td width="20%">Nome</td>
@@ -67,14 +71,18 @@
 				<td>${st.count}</td>
 			</tr>
 		</c:forEach>
+		
 	</table>
 
 	<c:url value="/produto/formulario" var="adiciona">
 	</c:url>
-	<a href="${adiciona}">Adicionar um produto</a>
+	<a href="${adiciona}"> 
+		<fmt:message key="mensagem.novoProduto"/>
+	</a>
 
-	<!-- EXEMPLO DE ATRIBUIÇÃO E IMPRESSÃO NA TELA COM TAGLLIB SET E OUT -->
+	<!-- EXEMPLO DE ATRIBUIÇÃO E IMPRESSÃO NA TELA COM TAGLLIB SET E OUT 
 	<c:set var="nome" value="João da Silva" />
 	<c:out value="${nome}" />
+	-->
 </body>
 </html>
